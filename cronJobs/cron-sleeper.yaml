@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+ name: bash-cron-job
+spec:
+ schedule: "5,10,15 * * * *"
+ jobTemplate:
+  spec:
+   template:
+    metadata:
+     labels:
+      app: bash-cron-job
+    spec:
+     restartPolicy: OnFailure
+     containers:
+     - name: main
+       image: falimonda/sleeper
